@@ -30,7 +30,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // パスワードの比較
 if ($input_pass == $result[0]["password"]) {
     // echo "ログイン完了";
-    $new_location = "../admin/admin.html";
+    $new_location = "../admin/admin.php";
     header("Location: $new_location");
     exit; 
 }
