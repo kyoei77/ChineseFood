@@ -9,14 +9,39 @@ h1{
 .login{
     text-align: right;
 }
-
+p{
+ margin-left: 200px;
+ margin-right: 200px;
+}
+.search{
+  text-decoration: none; 
+    color: rgb(248, 195, 20); 
+    font-weight: bold; 
+}
 .mainimage{
   width: 350px;
   height: 250px;
   display: block;
   border-radius: 10px;
   margin: 20px auto; 
+  margin-left: 200px;
 }
+.mainimage {
+    transition: opacity 0.3s ease; 
+  }
+  
+  .mainimage:hover {
+    opacity: 0.7; 
+  }
+  .mainlink {
+    text-decoration: none; 
+    color: rgb(248, 195, 20); 
+    font-weight: bold; 
+   
+  }
+  .mainlink:hover {
+    text-decoration: underline; 
+  }
 body {
     text-align: center;
 }
