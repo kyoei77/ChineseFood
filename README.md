@@ -36,3 +36,20 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo"<p>ユーザー名もしくはパスワード間違っています</p>";
     }
 ```
+
+## 
+画像をローカルに保存する。
+```
+move_uploaded_file($_FILES['food_image']['temp_name'], $serverName.$_FILES['food_image']['name']);
+```
+move_uploaded_file($_FILES['food_image']['temp_name'], $serverName.$_FILES['food_image']['name']);データベースには画像のパス
+```
+$serverName = "..\\uploadfile\\"
+$foodimage = $serverName.$_FILES["food_image"]["name"];
+```
+
+
+使うときには、画像のパスだけ受け取って表示する
+```
+<img src=$foodimage alt=$foodimage>
+```

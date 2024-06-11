@@ -1,3 +1,27 @@
+<?php
+// DB接続に必要な情報
+$login = "mysql:host=localhost;dbname=chinesefood;charset=utf8";
+$db_id = "testuser";
+$db_pass = "testpass";
+
+$serverName = "..\\upload_file\\";
+
+try {
+    // データベースに接続
+    $dbh = new PDO($login, $db_id, $db_pass);
+    // SQL文の用意
+    $sql = "SELECT * FROM foods WHERE type = 'sc'";
+    // クエリの実行
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+    // 取得した結果を配列として取得
+    $sc_dishes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+   
+} catch (PDOException $e) {
+    echo "接続失敗...";
+    echo "エラー内容:" . $e->getMessage();
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -16,6 +40,12 @@
         蘇菜は、中国の江蘇省に発祥した郷土料理で、中国八大料理（八大菜系）のひとつ。上海料理の原型であり、明の都であった南京、豪商が贅沢な料理を生み出した揚州、文人が多く集まった蘇州など、各地で異なる料理がある。<br>
         濃厚さの中に淡白さがあり、ふんわりとして香り高く、スープ出しは濃厚であるが嫌みがなく、口当たりは柔らかで甘味のある塩味がその特色。調理法は煮込み、遠火焼き、蒸し焼き、油炒めに長じている。調理する時には原材料を厳選して配色、盛り付けを重視する。
     </p>
+    <h2>料理一覧</h2>
+        <?php foreach ($sc_dishes as $dish) { ?>
+            <h3><?php echo $dish['foodname']; ?></h3>
+            <img src=<?php echo $serverName.$dish["foodimage"]; ?> alt=<?php echo $serverName.$dish["foodimage"]; ?>>
+            <p><?php echo $dish['introduction']; ?></p>
+        <?php } ?>
 </body>
 
 </html>

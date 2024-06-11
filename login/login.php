@@ -1,3 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            text-align: center;
+            color: #007bff;
+        }
+        form {
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+        }
+        table td {
+            padding: 10px;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 10px; 
+        }
+        input[type="submit"]:hover {
+            background-color: white;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h1>管理者ログインページ</h1>
+    <form action="login.php" method="post">
+        <table>
+            <tr>
+                <td>ユーザー名</td>
+                <td><input type="text" name="id" value=""></td>
+            </tr>
+            <tr>
+                <td>パスワード</td>
+                <td><input type="password" name="pass"></td>
+            </tr>
+        </table>
+        <input type="submit" value="ログイン">
+    </form>
+</body>
+</html>
+
 <?php
 
 //入力された数値の取得
@@ -6,6 +66,8 @@ $input_pass = $_POST["pass"];
 
 
 //DB接続に必要な情報
+if (!empty($input_id) && !empty($input_pass)) 
+{
 $login = "mysql:host=localhost;dbname=account;charset=utf8";
 $db_id = "testuser";
 $db_pass = "testpass";
@@ -28,14 +90,20 @@ $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // パスワードの比較
-if ($input_pass == $result[0]["password"]) {
+if ($stmt->rowCount() > 0&&$input_pass == $result[0]["password"]) {
     // echo "ログイン完了";
     $new_location = "../admin/admin.php";
     header("Location: $new_location");
     exit; 
 }
+
  else 
 {
-    echo"<p>パスワード間違っています</p>";
+    echo"<p style='color: red; font-size: 18px;'>ユーザー名またはパスワード間違っています</p>";
 }
+}
+else{
+    echo "<p style='color: red; font-size: 18px; text-align: center;'>ユーザー名とパスワードを入力してください。</p>";
+}
+
 ?>

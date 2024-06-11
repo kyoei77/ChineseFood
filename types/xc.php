@@ -1,3 +1,27 @@
+<?php
+// DB接続に必要な情報
+$login = "mysql:host=localhost;dbname=chinesefood;charset=utf8";
+$db_id = "testuser";
+$db_pass = "testpass";
+
+$serverName = "..\\upload_file\\";
+
+try {
+    // データベースに接続
+    $dbh = new PDO($login, $db_id, $db_pass);
+    // SQL文の用意
+    $sql = "SELECT * FROM foods WHERE type = 'xc'";
+    // クエリの実行
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+    // 取得した結果を配列として取得
+    $xc_dishes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+   
+} catch (PDOException $e) {
+    echo "接続失敗...";
+    echo "エラー内容:" . $e->getMessage();
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -16,6 +40,12 @@
         湘菜は、中国湖南省の郷土料理である。<br>
         その特徴は材料の幅が広く、油濃く色鮮やかで、唐辛子、燻製肉を多用する点にある。四川料理の辛さに酸味を加えた濃いめの味付けも特徴である。味付けは新鮮で香ばしく、酸味辛味が強く、柔らかく口当たりがよい。調理法は塩漬け肉、魚、燻製、蒸し焼き、蒸し物、煮込み、揚げ物、油炒めに長じている。
     </p>
+    <h2>料理一覧</h2>
+        <?php foreach ($xc_dishes as $dish) { ?>
+            <h3><?php echo $dish['foodname']; ?></h3>
+            <img src=<?php echo $serverName.$dish["foodimage"]; ?> alt=<?php echo $serverName.$dish["foodimage"]; ?>>
+            <p><?php echo $dish['introduction']; ?></p>
+        <?php } ?>
 </body>
 
 </html>

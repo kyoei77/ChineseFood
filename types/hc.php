@@ -1,3 +1,27 @@
+<?php
+// DB接続に必要な情報
+$login = "mysql:host=localhost;dbname=chinesefood;charset=utf8";
+$db_id = "testuser";
+$db_pass = "testpass";
+
+$serverName = "..\\upload_file\\";
+
+try {
+    // データベースに接続
+    $dbh = new PDO($login, $db_id, $db_pass);
+    // SQL文の用意
+    $sql = "SELECT * FROM foods WHERE type = 'hc'";
+    // クエリの実行
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+    // 取得した結果を配列として取得
+    $hc_dishes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+   
+} catch (PDOException $e) {
+    echo "接続失敗...";
+    echo "エラー内容:" . $e->getMessage();
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -17,6 +41,12 @@
         その特徴は原材料選定が質朴で、火の使い方を重視し、油がきつく色鮮やかで、スープだし、原材料本来の味を維持することにある。調理法は遠火焼き、煮込み、煮物に長じている。
 
     </p>
+    <h2>料理一覧</h2>
+        <?php foreach ($hc_dishes as $dish) { ?>
+            <h3><?php echo $dish['foodname']; ?></h3>
+            <img src=<?php echo $serverName.$dish["foodimage"]; ?> alt=<?php echo $serverName.$dish["foodimage"]; ?>>
+            <p><?php echo $dish['introduction']; ?></p>
+        <?php } ?>
 </body>
 
 </html>
