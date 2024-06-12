@@ -41,9 +41,9 @@
                 </td>
             </tr>
             <tr>
-                <td>料理の説明:</td>
+                <td >料理の説明:</td>
                 <td>
-                    <input type="text" name="introduction">
+                <textarea name="introduction" style="height: 150px; width: 300px;"></textarea>
                 </td>
             </tr>
 
@@ -66,7 +66,6 @@ $serverName = "..\\upload_file\\";
 if (isset($_POST["food_name"], $_POST["type"], $_FILES["food_image"]["name"], $_POST["introduction"])) {
     $foodname = $_POST["food_name"];
     $type = $_POST["type"];
-    // $foodimage = $_FILES["food_image"]["name"]; // POSTじゃないとfilesが持てない
     $serverName = "..\\upload_file\\";
     $foodimage =$_FILES["food_image"]["name"];
     $introduction = $_POST["introduction"];
@@ -92,8 +91,6 @@ if (isset($_POST["food_name"], $_POST["type"], $_FILES["food_image"]["name"], $_
        SQL;
         $dbh->query($sql);
         echo "<p>登録されました。</p>";
-        //
-        
         move_uploaded_file($_FILES['food_image']['tmp_name'], $serverName.$_FILES['food_image']['name']);
 
     } catch (PDOException $e) {
@@ -207,7 +204,39 @@ try {
     echo "接続失敗...";
     echo "エラー内容:" . $e->getMessage();
 }
+$foods1 = []; 
+foreach ($foods as $food) {
 
+
+    switch($food["type"]){
+        case "cc":
+            $food =array_merge($food, array('typefood'=>"川菜（四川料理）"));
+            break;
+        case "hc":
+            $food =array_merge($food, array('typefood'=>"徽菜（安徽料理"));
+            break;
+        case "lc":
+            $food =array_merge($food, array('typefood'=>"魯菜（山東料理）"));
+            break;
+        case "mc":
+            $food =array_merge($food, array('typefood'=>"閩菜（福建料理）"));
+            break;
+        case "sc":
+            $food =array_merge($food, array('typefood'=>"蘇菜（江蘇料理）"));
+            break;
+        case "xc":
+            $food =array_merge($food, array('typefood'=>"湘菜（湖南料理）"));
+            break;
+        case "yc":
+            $food =array_merge($food, array('typefood'=>"粤菜（広東料理）"));
+            break;
+        case "zc":
+            $food =array_merge($food, array('typefood'=>"浙菜（浙江料理）"));
+            break;
+    }
+    $foods1[] = $food;
+
+}
 ?>
 
 
@@ -227,16 +256,18 @@ try {
             <th>料理名</th>
             <th>種類</th>
             <th>写真</th>
-            <th>説明</th>
+            <th style = "width:900px;">説明</th>
         </tr>
-        <?php foreach ($foods as $food) : ?>
+        <?php foreach ($foods1 as $food) { ?>
             <tr>
                 <td><?php echo $food['foodname']; ?></td>
-                <td><?php echo $food['type']; ?></td>
+                <td><?php echo $food['typefood'] ; ?></td>
                 <td><a href=<?php echo $serverName.$food['foodimage']; ?>>image</a></td>
                 <td><?php echo $food['introduction']; ?></td>
+                <td><a href="./delete_food.php?id=<?php echo $food['id']; ?>" onclick="return confirm('この料理を削除しますか？')">削除</a></td>
+                <td><a href="./edit_food.php?id=<?php echo $food['id']; ?>">編集</a></td>
             </tr>
-        <?php endforeach; ?>
+        <?php } ?>
     </table>
 
     <p><a href="../homepage.html">ホームページへ</a></p>
