@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>料理の新規登録</title>
 </head>
 
 <body>
@@ -41,9 +41,9 @@
                 </td>
             </tr>
             <tr>
-                <td >料理の説明:</td>
+                <td>料理の説明:</td>
                 <td>
-                <textarea name="introduction" style="height: 150px; width: 300px;"></textarea>
+                    <textarea name="introduction" style="height: 150px; width: 300px;"></textarea>
                 </td>
             </tr>
 
@@ -54,12 +54,13 @@
 
 </html>
 
+<!-- //データの追加機能の作成 -->
 <?php
 //DB接続に必要な情報
 $login = "mysql:host=localhost;dbname=chinesefood;charset=utf8";
 $db_id = "testuser";
 $db_pass = "testpass";
-
+//画像をアップロードために
 $serverName = "..\\upload_file\\";
 
 //入力された情報の取得
@@ -67,15 +68,13 @@ if (isset($_POST["food_name"], $_POST["type"], $_FILES["food_image"]["name"], $_
     $foodname = $_POST["food_name"];
     $type = $_POST["type"];
     $serverName = "..\\upload_file\\";
-    $foodimage =$_FILES["food_image"]["name"];
+    $foodimage = $_FILES["food_image"]["name"];
     $introduction = $_POST["introduction"];
-
-    // echo $foodimage;
 
     // DBに接続します
     try {
         $dbh = new PDO($login, $db_id, $db_pass);
-        // SQL文の用意
+        // 追加用のSQL文の用意
         $sql = <<<SQL
         INSERT INTO foods (
             `foodname`,
@@ -91,8 +90,8 @@ if (isset($_POST["food_name"], $_POST["type"], $_FILES["food_image"]["name"], $_
        SQL;
         $dbh->query($sql);
         echo "<p>登録されました。</p>";
-        move_uploaded_file($_FILES['food_image']['tmp_name'], $serverName.$_FILES['food_image']['name']);
-
+        //画像ををローカルに保存する
+        move_uploaded_file($_FILES['food_image']['tmp_name'], $serverName . $_FILES['food_image']['name']);
     } catch (PDOException $e) {
         echo "接続失敗...";
         echo "エラー内容:" . $e->getMessage();
@@ -101,9 +100,10 @@ if (isset($_POST["food_name"], $_POST["type"], $_FILES["food_image"]["name"], $_
     echo "<p>送信してください。</p>";
 }
 
+//一覧表用の全部のデータを取り出す
 try {
     $dbh = new PDO($login, $db_id, $db_pass);
-    // SQL文の用意
+    // 取り出すSQL文の用意
     $sql = "SELECT * FROM foods";
     $stmt = $dbh->query($sql);
     $foods = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -111,142 +111,52 @@ try {
     echo "接続失敗...";
     echo "エラー内容:" . $e->getMessage();
 }
-//各種の料理
-//1
-try {
-    $dbh = new PDO($login, $db_id, $db_pass);
-    // SQL文の用意
-    $sql = "SELECT * FROM foods WHERE type = 'cc'";
-    $stmt = $dbh->query($sql);
-    $sc_dishes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    
-} catch (PDOException $e) {
-    echo "接続失敗...";
-    echo "エラー内容:" . $e->getMessage();
-}
-//2
-try {
-    $dbh = new PDO($login, $db_id, $db_pass);
-    // SQL文の用意
-    $sql = "SELECT * FROM foods WHERE type = 'hc'";
-    $stmt = $dbh->query($sql);
-    $hc_dishes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    
-} catch (PDOException $e) {
-    echo "接続失敗...";
-    echo "エラー内容:" . $e->getMessage();
-}
-//3
-try {
-    $dbh = new PDO($login, $db_id, $db_pass);
-    // SQL文の用意
-    $sql = "SELECT * FROM foods WHERE type = 'lc'";
-    $stmt = $dbh->query($sql);
-    $lc_dishes = $stmt->fetchAll(PDO::FETCH_ASSOC); 
-} catch (PDOException $e) {
-    echo "接続失敗...";
-    echo "エラー内容:" . $e->getMessage();
-}
-//4
-try {
-    $dbh = new PDO($login, $db_id, $db_pass);
-    // SQL文の用意
-    $sql = "SELECT * FROM foods WHERE type = 'mc'";
-    $stmt = $dbh->query($sql);
-    $mc_dishes = $stmt->fetchAll(PDO::FETCH_ASSOC); 
-} catch (PDOException $e) {
-    echo "接続失敗...";
-    echo "エラー内容:" . $e->getMessage();
-}
-//5
-try {
-    $dbh = new PDO($login, $db_id, $db_pass);
-    // SQL文の用意
-    $sql = "SELECT * FROM foods WHERE type = 'sc'";
-    $stmt = $dbh->query($sql);
-    $sc_dishes = $stmt->fetchAll(PDO::FETCH_ASSOC); 
-} catch (PDOException $e) {
-    echo "接続失敗...";
-    echo "エラー内容:" . $e->getMessage();
-}
-//6
-try {
-    $dbh = new PDO($login, $db_id, $db_pass);
-    // SQL文の用意
-    $sql = "SELECT * FROM foods WHERE type = 'xc'";
-    $stmt = $dbh->query($sql);
-    $xc_dishes = $stmt->fetchAll(PDO::FETCH_ASSOC); 
-} catch (PDOException $e) {
-    echo "接続失敗...";
-    echo "エラー内容:" . $e->getMessage();
-}
-//7
-try {
-    $dbh = new PDO($login, $db_id, $db_pass);
-    // SQL文の用意
-    $sql = "SELECT * FROM foods WHERE type = 'yc'";
-    $stmt = $dbh->query($sql);
-    $yc_dishes = $stmt->fetchAll(PDO::FETCH_ASSOC); 
-} catch (PDOException $e) {
-    echo "接続失敗...";
-    echo "エラー内容:" . $e->getMessage();
-}
-//8
-try {
-    $dbh = new PDO($login, $db_id, $db_pass);
-    // SQL文の用意
-    $sql = "SELECT * FROM foods WHERE type = 'zc'";
-    $stmt = $dbh->query($sql);
-    $zc_dishes = $stmt->fetchAll(PDO::FETCH_ASSOC); 
-} catch (PDOException $e) {
-    echo "接続失敗...";
-    echo "エラー内容:" . $e->getMessage();
-}
-$foods1 = []; 
+//英語表記である略称から漢字表記に変更して、配列に入れる
+$foods1 = [];
 foreach ($foods as $food) {
 
-
-    switch($food["type"]){
+    $food1 =[];
+    switch ($food["type"]) {
         case "cc":
-            $food =array_merge($food, array('typefood'=>"川菜（四川料理）"));
+            $food1 = array_merge($food, array('typefood' => "川菜（四川料理）"));
             break;
         case "hc":
-            $food =array_merge($food, array('typefood'=>"徽菜（安徽料理"));
+            $food1 = array_merge($food, array('typefood' => "徽菜（安徽料理)"));
             break;
         case "lc":
-            $food =array_merge($food, array('typefood'=>"魯菜（山東料理）"));
+            $food1 = array_merge($food, array('typefood' => "魯菜（山東料理）"));
             break;
         case "mc":
-            $food =array_merge($food, array('typefood'=>"閩菜（福建料理）"));
+            $food1 = array_merge($food, array('typefood' => "閩菜（福建料理）"));
             break;
         case "sc":
-            $food =array_merge($food, array('typefood'=>"蘇菜（江蘇料理）"));
+            $food1 = array_merge($food, array('typefood' => "蘇菜（江蘇料理）"));
             break;
         case "xc":
-            $food =array_merge($food, array('typefood'=>"湘菜（湖南料理）"));
+            $food1 = array_merge($food, array('typefood' => "湘菜（湖南料理）"));
             break;
         case "yc":
-            $food =array_merge($food, array('typefood'=>"粤菜（広東料理）"));
+            $food1 = array_merge($food, array('typefood' => "粤菜（広東料理）"));
             break;
         case "zc":
-            $food =array_merge($food, array('typefood'=>"浙菜（浙江料理）"));
+            $food1 = array_merge($food, array('typefood' => "浙菜（浙江料理）"));
             break;
     }
-    $foods1[] = $food;
-
+    
+    $foods1[] = $food1;
+    
 }
 ?>
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>登録された料理一覧</title>
 </head>
 
 <body>
@@ -256,20 +166,23 @@ foreach ($foods as $food) {
             <th>料理名</th>
             <th>種類</th>
             <th>写真</th>
-            <th style = "width:900px;">説明</th>
+            <th style="width:900px;">説明</th>
         </tr>
+        <!-- 表示するため -->
         <?php foreach ($foods1 as $food) { ?>
-            <tr>
-                <td><?php echo $food['foodname']; ?></td>
-                <td><?php echo $food['typefood'] ; ?></td>
-                <td><a href=<?php echo $serverName.$food['foodimage']; ?>>image</a></td>
-                <td><?php echo $food['introduction']; ?></td>
-                <td><a href="./delete_food.php?id=<?php echo $food['id']; ?>" onclick="return confirm('この料理を削除しますか？')">削除</a></td>
-                <td><a href="./edit_food.php?id=<?php echo $food['id']; ?>">編集</a></td>
-            </tr>
+            <?php if ($food['flag'] != 0) { ?>
+                <tr>
+                    <td><?php echo $food['foodname']; ?></td>
+                    <td><?php echo $food['typefood']; ?></td>
+                    <td><a href=<?php echo $serverName . $food['foodimage']; ?>>image</a></td>
+                    <td><?php echo $food['introduction']; ?></td>
+                    <td><a href="./delete_food.php?id=<?php echo $food['id']; ?>" onclick="return confirm('この料理を削除しますか？')">削除</a></td>
+                    <td><a href="./edit_food.php?id=<?php echo $food['id']; ?>">編集</a></td>
+                </tr>
+            <?php } ?>
         <?php } ?>
     </table>
-
+    <!-- ホームページに戻る -->
     <p><a href="../homepage.html">ホームページへ</a></p>
 </body>
 

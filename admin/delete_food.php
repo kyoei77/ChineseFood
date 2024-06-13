@@ -11,11 +11,12 @@ if (isset($_GET['id'])) {
     try {
         $dbh = new PDO($login, $db_id, $db_pass);
         // SQL文の用意
-        $sql = "DELETE FROM foods WHERE id=?";
+        $sql = "UPDATE foods SET flag =0 WHERE id=?";
         $stmt = $dbh->prepare($sql);
         $stmt->bindParam(1, $id);
         $stmt->execute();
 
+        //管理者画面に戻る
         header("Location: ./admin.php");
         exit();
     } catch (PDOException $e) {

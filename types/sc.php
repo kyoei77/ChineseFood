@@ -42,9 +42,12 @@ try {
     </p>
     <h2>料理一覧</h2>
         <?php foreach ($sc_dishes as $dish) { ?>
+            <?php if ($dish['flag'] != 0) { ?>
+
             <h3><?php echo $dish['foodname']; ?></h3>
             <img src=<?php echo $serverName.$dish["foodimage"]; ?> alt=<?php echo $serverName.$dish["foodimage"]; ?>>
             <p><?php echo $dish['introduction']; ?></p>
+        <?php } ?>
         <?php } ?>
 </body>
 
