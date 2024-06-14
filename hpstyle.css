@@ -1,0 +1,142 @@
+/* *{
+    background-color: rgb(228, 76, 76);
+
+}
+h1{
+    color: rgb(248, 195, 20);
+    text-align: center;
+}
+.search{
+  color: gold;
+  background-color:  rgb(228, 76, 76);
+}
+.login{
+    text-align: right;
+}
+p{
+ margin-left: 200px;
+ margin-right: 200px;
+}
+.search{
+  text-decoration: none; 
+    color: rgb(248, 195, 20); 
+    font-weight: bold; 
+}
+.mainimage{
+  width: 350px;
+  height: 250px;
+  display: block;
+  border-radius: 10px;
+  margin: 20px auto; 
+  margin-left: 200px;
+}
+.mainimage {
+    transition: opacity 0.3s ease; 
+  }
+  
+  .mainimage:hover {
+    opacity: 0.7; 
+  }
+  .mainlink {
+    text-decoration: none; 
+    color: rgb(248, 195, 20); 
+    font-weight: bold; 
+   
+  }
+  .mainlink:hover {
+    text-decoration: underline; 
+  }
+body {
+    text-align: center;
+} */
+
+/* 全体の背景色を変更 */
+body {
+  background-color: #fde6e6; /* 淡いピンク色 */
+  font-family: Arial, sans-serif; /* フォントを設定 */
+}
+
+/* 見出し（h1）のスタイル */
+h1 {
+  color: #e13d3d; /* 深い赤色 */
+  font-size: 36px; /* フォントサイズを大きく */
+  text-align: center;
+  margin-top: 50px; /* 上部のマージンを追加 */
+}
+
+/* 検索フォームのスタイル */
+.search {
+  margin: 20px auto; /* 中央に配置 */
+  text-align: center;
+}
+
+.search label {
+  font-weight: bold; /* ラベルを太字に */
+  margin-right: 10px; /* ラベルと入力フィールドの間隔を調整 */
+}
+
+.search input[type="text"] {
+  padding: 8px; /* 入力フィールドの余白を追加 */
+  border: 2px solid #e13d3d; /* 枠線を追加 */
+  border-radius: 5px; /* 角丸に */
+}
+
+.search button {
+  padding: 8px 20px; /* ボタンの余白を追加 */
+  background-color: #e13d3d; /* 赤色の背景 */
+  color: #fff; /* 白色のテキスト */
+  border: none; /* 枠線を消す */
+  border-radius: 5px; /* 角丸に */
+  cursor: pointer; /* マウスを乗せた時のカーソルを指定 */
+}
+
+/* ログインリンクのスタイル */
+.login {
+  text-align: right;
+  margin-top: 20px; /* 上部のマージンを追加 */
+}
+
+.login a {
+  color: #e13d3d; /* リンクの色を赤色に */
+  text-decoration: none; /* アンダーラインを消す */
+}
+
+.login a:hover {
+  text-decoration: underline; /* マウスを乗せた時にアンダーラインを表示 */
+}
+
+/* 本文のスタイル */
+p {
+  text-align: justify; /* 両端揃え */
+  margin-left: 200px;
+  margin-right: 200px; /* 左右の余白を追加 */
+}
+
+/* メイン画像のスタイル */
+.mainimage{
+  width: 350px;
+  height: 250px;
+  display: block;
+  border-radius: 10px;
+  margin: 20px auto; 
+  margin-left: 200px;
+}
+
+.mainimage:hover {
+  opacity: 0.7; /* マウスを乗せた時の透明度 */
+}
+
+/* メインリンクのスタイル */
+.mainlink {
+  text-decoration: none; 
+  color: #e13d3d; /* 赤色のテキスト */
+  font-weight: bold; 
+}
+
+.mainlink:hover {
+  text-decoration: underline; /* マウスを乗せた時にアンダーラインを表示 */
+}
+
+body {
+  text-align: center;
+} 

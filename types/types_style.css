@@ -1,0 +1,131 @@
+/* 全体の背景色を設定 */
+body {
+    font-family: Arial, sans-serif; /* フォントを指定 */
+    background-color: #f9f9f9; /* 背景色を設定 */
+    margin: 0; /* マージンをリセット */
+    padding: 0; /* パディングをリセット */
+}
+
+/* 見出しのスタイル */
+h1 {
+    color: #e13d3d; /* テキスト色を設定 */
+    text-align: center; /* 中央揃えにする */
+    margin-top: 30px; /* 上部の余白を設定 */
+}
+
+/* 本文のスタイル */
+p {
+    font-size: 16px; /* フォントサイズを設定 */
+    line-height: 1.5; /* 行間を設定 */
+    margin-bottom: 10px; /* 下部に余白を追加 */
+}
+/* 料理一覧の見出しスタイル */
+h2 {
+    color: #e13d3d; /* テキスト色を設定 */
+    text-align: center; /* 中央揃えにする */
+}
+
+/* テーブルのスタイル */
+table {
+    width: 100%; /* 幅を100%にする */
+    margin-bottom: 20px; /* 下部に20pxの余白を設定 */
+}
+
+td {
+    padding: 20px; /* 内側の余白を設定 */
+    border-radius: 10px; /* 角丸にする */
+    background-color: #fff; /* 背景色を白に設定 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* ボックスシャドウを追加 */
+}
+
+/* 料理名のスタイル */
+h3 {
+    color: #e13d3d; /* テキスト色を設定 */
+    font-size: 24px; /* フォントサイズを大きくする */
+    margin-bottom: 10px; /* 下部に余白を追加 */
+}
+
+/* テーブル内の画像のスタイル */
+table img {
+    max-width: 100%; /* 最大幅を100%にする */
+    height: auto; /* 高さを自動調整 */
+    display: block; /* 画像をブロック要素にする */
+    margin: 0 auto; /* 左右中央揃えにする */
+    border-radius: 5px; /* 角丸にする */
+}
+
+/* コメントフォームのスタイル */
+/* コメント入力フォームのスタイル */
+form {
+    margin-top: 20px; /* 上部の余白を設定 */
+}
+
+/* コメント入力フィールドのスタイル */
+input[type="text"],
+textarea {
+    width: 100%; /* 幅を100%にする */
+    padding: 8px; /* 内側の余白を設定 */
+    margin-bottom: 10px; /* 下部に10pxの余白を設定 */
+    border-radius: 5px; /* 角丸にする */
+    border: 1px solid #ccc; /* 枠線を設定 */
+    box-sizing: border-box; /* 枠線を含んだボックスサイズにする */
+}
+
+/* 送信ボタンのスタイル */
+input[type="submit"] {
+    background-color: #e13d3d; /* 背景色を設定 */
+    color: #fff; /* テキスト色を設定 */
+    border: none; /* 枠線をなくす */
+    padding: 8px 20px; /* 内側の余白を設定 */
+    border-radius: 5px; /* 角丸にする */
+    cursor: pointer; /* カーソルをポインターにする */
+    transition: background-color 0.3s; /* 背景色の変化を滑らかにする */
+}
+
+/* ホバー時の送信ボタンのスタイル */
+input[type="submit"]:hover {
+    background-color: #c93b3b; /* ホバー時の背景色を設定 */
+}
+
+
+iframe {
+    display: block; /* ブロック要素にする */
+    margin: 0 auto; /* 左右中央揃えにする */
+    width: 80%; /* 幅を80%にする */
+    max-width: 600px; /* 最大幅を指定 */
+    height: 450px; /* 高さを指定 */
+    border: none; /* 枠線をなくす */
+    margin-bottom: 20px; /* 下部に20pxの余白を設定 */
+}
+
+/* コメントのスタイル */
+.comment {
+    margin-top: 20px; /* 上部の余白を設定 */
+}
+
+/* コメント1つ1つのスタイル */
+.comment p {
+    margin-bottom: 5px; /* 下部に5pxの余白を設定 */
+}
+/* コメント一覧のスタイル */
+.comment {
+    margin-top: 20px; /* 上部の余白を設定 */
+}
+
+/* 各コメントのスタイル */
+.comment p {
+    margin-bottom: 5px; /* 下部に5pxの余白を設定 */
+}
+
+/* 時間のスタイル */
+.comment .time {
+    color: #888; /* 時間のテキスト色をグレーに設定 */
+    font-size: 14px; /* フォントサイズを小さくする */
+    margin-bottom: 5px; /* 下部に5pxの余白を設定 */
+}
+.comment .name{
+    color: rgb(14, 14, 234);
+    background-color: #ccc;
+}
+
+

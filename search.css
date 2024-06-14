@@ -1,0 +1,41 @@
+body {
+  background-color: #fde6e6; /* 淡いピンク色 */
+  font-family: Arial, sans-serif; /* フォントを設定 */
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #e13d3d; /* 赤色の背景 */
+    color: #fff; /* 白色のテキスト */
+}
+
+h3 {
+    color: #e13d3d; /* テキスト色を設定 */
+    font-size: 24px; /* フォントサイズを大きくする */
+    margin-bottom: 10px; /* 下部に余白を追加 */
+}
+
+img {
+    max-width: 100%; /* 最大幅を100%にする */
+    height: auto; /* 高さを自動調整 */
+    display: block; /* 画像をブロック要素にする */
+    margin: 0 auto; /* 左右中央揃えにする */
+    border-radius: 5px; /* 角丸にする */
+}
+
+p {
+    margin: 0;
+    padding: 0;
+    text-align: justify;
+    line-height: 1.6;
+}
