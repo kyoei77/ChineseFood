@@ -5,12 +5,37 @@ body {
     margin: 0; /* マージンをリセット */
     padding: 0; /* パディングをリセット */
 }
-
+.return{
+    color: white;
+    font-size: 15px;
+    background-color:#e13d3d;
+    
+    margin-left: 1200px;
+    /* margin: 0 auto; */
+    display: block;
+    padding: 5px;
+    width: 50px;
+    height: 25px; 
+    text-align: center;
+    text-decoration: none;
+    border-radius: 20px;
+  }
+.return:hover{
+    color:#e13d3d;
+    background-color: white;
+  }
 /* 見出しのスタイル */
 h1 {
     color: #e13d3d; /* テキスト色を設定 */
     text-align: center; /* 中央揃えにする */
     margin-top: 30px; /* 上部の余白を設定 */
+}
+.intro{
+    width: auto;
+    margin-left:200px;
+    margin-right: 200px;
+    border-left: solid 20px #e13d3d;
+    padding: 10px;
 }
 
 /* 本文のスタイル */
@@ -18,6 +43,7 @@ p {
     font-size: 16px; /* フォントサイズを設定 */
     line-height: 1.5; /* 行間を設定 */
     margin-bottom: 10px; /* 下部に余白を追加 */
+    width:800px;
 }
 /* 料理一覧の見出しスタイル */
 h2 {
@@ -43,6 +69,7 @@ h3 {
     color: #e13d3d; /* テキスト色を設定 */
     font-size: 24px; /* フォントサイズを大きくする */
     margin-bottom: 10px; /* 下部に余白を追加 */
+    text-align: center;
 }
 
 /* テーブル内の画像のスタイル */
@@ -58,6 +85,7 @@ table img {
 /* コメント入力フォームのスタイル */
 form {
     margin-top: 20px; /* 上部の余白を設定 */
+    width:485px;
 }
 
 /* コメント入力フィールドのスタイル */
@@ -79,12 +107,15 @@ input[type="submit"] {
     padding: 8px 20px; /* 内側の余白を設定 */
     border-radius: 5px; /* 角丸にする */
     cursor: pointer; /* カーソルをポインターにする */
-    transition: background-color 0.3s; /* 背景色の変化を滑らかにする */
+   
 }
+
 
 /* ホバー時の送信ボタンのスタイル */
 input[type="submit"]:hover {
-    background-color: #c93b3b; /* ホバー時の背景色を設定 */
+    background-color:#fff;
+    color: #e13d3d;
+     /* ホバー時の背景色を設定 */
 }
 
 
@@ -96,6 +127,7 @@ iframe {
     height: 450px; /* 高さを指定 */
     border: none; /* 枠線をなくす */
     margin-bottom: 20px; /* 下部に20pxの余白を設定 */
+    border-radius: 10px;
 }
 
 /* コメントのスタイル */
@@ -104,13 +136,11 @@ iframe {
 }
 
 /* コメント1つ1つのスタイル */
-.comment p {
+.commentform {
     margin-bottom: 5px; /* 下部に5pxの余白を設定 */
+    width: 470px;
 }
-/* コメント一覧のスタイル */
-.comment {
-    margin-top: 20px; /* 上部の余白を設定 */
-}
+
 
 /* 各コメントのスタイル */
 .comment p {
@@ -126,6 +156,10 @@ iframe {
 .comment .name{
     color: rgb(14, 14, 234);
     background-color: #ccc;
+}
+
+.nocomment{
+    color: #888;
 }
 
 

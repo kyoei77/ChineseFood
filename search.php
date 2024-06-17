@@ -10,11 +10,12 @@ try {
     $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : null;
     $keyword = "%" . $keyword . "%";
     if (!empty($keyword)) {
-        $sql = "SELECT * FROM foods WHERE foodname LIKE ?";
+        $sql = "SELECT * FROM foods WHERE (foodname LIKE ? OR introduction LIKE ?)";
         // プレイスホルダー
         $stmt = $dbh->prepare($sql);
         // $stmt->bindParam(1, $id);
         $stmt->bindParam(1, $keyword);
+        $stmt->bindParam(2, $keyword);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

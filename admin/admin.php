@@ -173,13 +173,13 @@ foreach ($foods as $food) {
             <th>料理名</th>
             <th>種類</th>
             <th>写真</th>
-            <th style="width:900px;">説明</th>
+            <th style="width:800px;">説明</th>
         </tr>
         <!-- 表示するため -->
         <?php foreach ($foods1 as $food) { ?>
             <?php if ($food['flag'] != 0) { ?>
                 <tr>
-                    <td><?php echo $food['foodname']; ?></td>
+                    <td text-align="center"><?php echo $food['foodname']; ?></td>
                     <td><?php echo $food['typefood']; ?></td>
                     <td><a href=<?php echo $serverName . $food['foodimage']; ?>>image</a></td>
                     <td><?php echo $food['introduction']; ?></td>

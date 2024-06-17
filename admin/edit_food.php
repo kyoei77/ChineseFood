@@ -22,21 +22,26 @@ if (isset($_GET['id'])) {
     }
 }
 
-
-
 // フォームが送信された場合はデータベースに変更を保存
 if (isset($_POST['submit'])) {
     $foodname = $_POST['food_name'];
     $type = $_POST['type'];
-
-    $serverName = "..\\upload_file\\";
-    $foodimage = $_FILES["food_image"]["name"];
     $introduction = $_POST["introduction"];
+
+    // 画像の処理
+    $serverName = "..\\upload_file\\";
+    if (isset($_FILES["food_image"]) && $_FILES["food_image"]["name"] !== '') {
+        $foodimage = $_FILES["food_image"]["name"];
+        move_uploaded_file($_FILES['food_image']['tmp_name'], $serverName . $_FILES['food_image']['name']);
+    } else {
+        // ファイルがアップロードされていない場合は元の画像をそのまま利用する
+        $foodimage = $food['foodimage'];
+    }
 
     try {
         $dbh = new PDO($login, $db_id, $db_pass);
         // 更新用のSQL文の用意
-        $sql = "UPDATE foods SET foodname=?, type=?, foodimage=?,introduction=? WHERE id=?";
+        $sql = "UPDATE foods SET foodname=?, type=?, foodimage=?, introduction=? WHERE id=?";
         $stmt = $dbh->prepare($sql);
         $stmt->bindParam(1, $foodname);
         $stmt->bindParam(2, $type);
@@ -47,17 +52,13 @@ if (isset($_POST['submit'])) {
 
         echo "料理が更新されました。";
 
-        if (isset($_FILES["food_image"])) {
-            // ファイルがアップロードされている場合
-            if ($_FILES["food_image"]["name"] !== '') {
-                $foodimage = $_FILES["food_image"]["name"];
-                move_uploaded_file($_FILES['food_image']['tmp_name'], $serverName . $_FILES['food_image']['name']);
-                $food['foodimage'] = $foodimage;
-            } else {
-                // ファイルがアップロードされていない場合の処理
-                $foodimage = $food['foodimage'];
-            }
-        }
+        // 更新後の料理情報を取得
+        $sql = "SELECT * FROM foods WHERE id=?";
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindParam(1, $id);
+        $stmt->execute();
+        $food = $stmt->fetch(PDO::FETCH_ASSOC);
+
     } catch (PDOException $e) {
         echo "エラー：" . $e->getMessage();
     }
@@ -71,6 +72,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>料理の編集</title>
+    <link rel="stylesheet" href="admin3.css">
 </head>
 
 <body>
@@ -79,7 +81,7 @@ if (isset($_POST['submit'])) {
         <table>
             <tr>
                 <td>料理名:</td>
-                <td><input type="text" name="food_name" value="<?php echo $food['foodname']; ?>"></td>
+                <td><input type="text" name="food_name" value="<?php echo htmlspecialchars($food['foodname']); ?>"></td>
             </tr>
             <tr>
                 <td>料理の種類:</td>
@@ -98,11 +100,17 @@ if (isset($_POST['submit'])) {
             </tr>
             <tr>
                 <td>料理の写真</td>
-                <td><input type="file" name="food_image" value="<a href=<?php echo $serverName . $food['foodimage']; ?>>image</a>"></td>
+                <td>
+                    <?php if (!empty($food['foodimage'])): ?>
+                        <img src="<?php echo htmlspecialchars($food['foodimage']); ?>" alt="料理の写真" style="max-width: 300px;">
+                        <br>
+                    <?php endif; ?>
+                    <input type="file" name="food_image">
+                </td>
             </tr>
             <tr>
                 <td>料理の説明:</td>
-                <td><textarea name="introduction" style="height: 150px; width: 300px;"><?php echo $food['introduction']; ?></textarea></td>
+                <td><textarea name="introduction" style="height: 150px; width: 300px;"><?php echo htmlspecialchars($food['introduction']); ?></textarea></td>
             </tr>
         </table>
         <input type="submit" name="submit" value="更新">

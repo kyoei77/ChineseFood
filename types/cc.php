@@ -33,8 +33,10 @@ try {
 
 <body>
     <h1>川菜</h1>
-    <p>川菜は、狭義には、中国四川省の郷土料理。広義には、重慶市、雲南省、貴州省などの周辺地域をも含めた、共通する特徴をもつ郷土料理の系統を指す。 <br>
-        酸味、甘み、痺れる辛さ、辛み、巧みな醤油、濃厚な味付けが特徴で、調味料として三椒（唐辛子、胡椒、花山椒）と生姜は欠かすことができず、他の地方には余り見られない辛味、酸味、痺れる辛さのある料理として人々に知られ親しまれている。
+    <a href="../homepage.html" class="return">戻る</a>
+    <p class="intro">
+        &emsp;川菜は、狭義には、中国四川省の郷土料理。広義には、重慶市、雲南省、貴州省などの周辺地域をも含めた、共通する特徴をもつ郷土料理の系統を指す。 <br>
+        &emsp;酸味、甘み、痺れる辛さ、辛み、巧みな醤油、濃厚な味付けが特徴で、調味料として三椒（唐辛子、胡椒、花山椒）と生姜は欠かすことができず、他の地方には余り見られない辛味、酸味、痺れる辛さのある料理として人々に知られ親しまれている。
     </p>
     <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14327133.983074326!2d83.47705587647891!3d28.754329650532064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x36e4e73368bdcdb3%3A0xde8f7ccf8f99feb9!2z5Lit6I-v5Lq65rCR5YWx5ZKM5Zu9IOWbm-W3neecgQ!5e0!3m2!1sja!2sjp!4v1717728521971!5m2!1sja!2sjp"
@@ -59,7 +61,7 @@ try {
             <td>
                 <!-- コメント機能の追加 -->
                 <h4> コメント</h4>
-                <p>
+                <p class="commentform">
 
                     この料理に対する感想やこの料理の作り方を共有したい方はぜひコメントしてください！<br>
                 </p>
@@ -69,12 +71,12 @@ try {
                     <input type="hidden" name="dish_id" value="<?php echo $dish['id']; ?>">
                     <table>
                         <tr>
-                            <td> お名前</td>
+                            <td>ユーザー名</td>
                             <td><input type="text" name="name" size="35"></td>
                         </tr>
                         <tr>
                             <td> メールアドレス</td>
-                            <td><input type="text" name="mail" size="35"></td>
+                            <td><input type="text" name="email" size="35"></td>
                         </tr>
                         <tr>
                             <td colspan="2">
@@ -91,7 +93,7 @@ try {
     </table>
     
     
-    <h4>コメント一覧</h4>
+    
     <!-- その料理に関連するコメントを表示 -->
     <div class="comment">
         <?php
@@ -103,23 +105,29 @@ try {
         $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         // 取得したコメントを表示する
-        foreach ($comments as $comment) {
+        if(!empty($comments)){
+            echo"<h4>コメント一覧</h4>";
+            foreach ($comments as $comment) {
             
             echo "<p class = 'name'>{$comment['name']}</p>";
             echo"<p>{$comment['comment']}</p>";
             echo "<p class = 'time'>{$comment['time']}</p>";
            
         }
+    }
+    else{
+        echo"<p class='nocomment'>コメントをお待ちしています！</p>";
+    }
+        
     ?>
+        
     </div>
+
     <!-- コメントフォームを表示 -->
     <!-- 以下にフォームを表示するコードを追加 -->
     <?php } ?>
 
     <?php } ?>
-
-
-
 
 </body>
 

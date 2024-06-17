@@ -4,6 +4,11 @@ $login = "mysql:host=localhost;dbname=chinesefood;charset=utf8";
 $db_id = "testuser";
 $db_pass = "testpass";
 
+$ngo = null;
+
+isset($ngo);
+empty($ngo);
+
 try {
     // データベースに接続
     $dbh = new PDO($login, $db_id, $db_pass);
@@ -15,7 +20,7 @@ try {
         // POSTデータからコメントを受け取る
         $dish_id = $_POST['dish_id'];
         $name = $_POST['name'];
-        $email = $_POST['mail'];
+        $email = $_POST['email'];
         $comment = $_POST['comment'];
         
         // データベースにコメントを挿入するクエリを準備

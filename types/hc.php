@@ -33,14 +33,16 @@ try {
 </head>
 
 <body>
+<h1>徽菜</h1>
+<a href="../homepage.html" class="return">戻る</a>
+    
+    <p class="intro">
+    &emsp;徽菜は、中国安徽省の郷土料理。福州、泉州、アモイなどの地方料理を代表として発達している。<br>
+    &emsp;その特徴は原材料選定が質朴で、火の使い方を重視し、油がきつく色鮮やかで、スープだし、原材料本来の味を維持することにある。調理法は遠火焼き、煮込み、煮物に長じている。
     <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3464695.8180707656!2d114.62428009109763!3d32.00178365872384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3434a48ca17082d7%3A0x7aa8d6156e75706d!2z5Lit6I-v5Lq65rCR5YWx5ZKM5Zu9IOWuieW-veecgQ!5e0!3m2!1sja!2sjp!4v1717733394825!5m2!1sja!2sjp"
         width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <p>
-        徽菜は、中国安徽省の郷土料理。福州、泉州、アモイなどの地方料理を代表として発達している。<br>
-        その特徴は原材料選定が質朴で、火の使い方を重視し、油がきつく色鮮やかで、スープだし、原材料本来の味を維持することにある。調理法は遠火焼き、煮込み、煮物に長じている。
-
     </p>
     <h2>料理一覧</h2>
     <?php foreach ($hc_dishes as $dish) { ?>
@@ -61,7 +63,7 @@ try {
             <td>
                 <!-- コメント機能の追加 -->
                 <h4> コメント</h4>
-                <p>
+                <p class="commentform">
 
                     この料理に対する感想やこの料理の作り方を共有したい方はぜひコメントしてください！<br>
                 </p>
@@ -71,12 +73,12 @@ try {
                     <input type="hidden" name="dish_id" value="<?php echo $dish['id']; ?>">
                     <table>
                         <tr>
-                            <td> お名前</td>
+                            <td> ユーザー名</td>
                             <td><input type="text" name="name" size="35"></td>
                         </tr>
                         <tr>
                             <td> メールアドレス</td>
-                            <td><input type="text" name="mail" size="35"></td>
+                            <td><input type="text" name="email" size="35"></td>
                         </tr>
                         <tr>
                             <td colspan="2">
@@ -93,9 +95,8 @@ try {
     </table>
     
     
-    <h4>コメント一覧</h4>
-    <!-- その料理に関連するコメントを表示 -->
-    <div class="comment">
+       <!-- その料理に関連するコメントを表示 -->
+       <div class="comment">
         <?php
         // この料理に関連するコメントをデータベースから取得するクエリを実行する
         $comments_query = "SELECT * FROM comments WHERE dish_id = :dish_id";
@@ -105,20 +106,30 @@ try {
         $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         // 取得したコメントを表示する
-        foreach ($comments as $comment) {
+        if(isset($comment)){
+            echo"<h4>コメント一覧</h4>";
+            foreach ($comments as $comment) {
             
             echo "<p class = 'name'>{$comment['name']}</p>";
             echo"<p>{$comment['comment']}</p>";
             echo "<p class = 'time'>{$comment['time']}</p>";
            
         }
+    }
+    else{
+        echo"<p class='nocomment'>コメントをお待ちしています！</p>";
+    }
+        
     ?>
+        
     </div>
+
     <!-- コメントフォームを表示 -->
     <!-- 以下にフォームを表示するコードを追加 -->
     <?php } ?>
 
     <?php } ?>
+
 
 </body>
 

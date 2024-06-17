@@ -21,6 +21,7 @@ h1 {
 
 h3 {
     color: #e13d3d; /* テキスト色を設定 */
+    background-color: #fff;
     font-size: 24px; /* フォントサイズを大きくする */
     margin-bottom: 10px; /* 下部に余白を追加 */
 }

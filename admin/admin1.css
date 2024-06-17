@@ -28,9 +28,12 @@ table {
     border-collapse: collapse;
 }
 
-th, td {
+table th{
     padding: 10px;
-    text-align: left;
+    text-align: center;
+}
+table td{
+    text-align: center;
 }
 
 th {
