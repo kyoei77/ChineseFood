@@ -4,15 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>管理者ログインページ</title>
     <style>
-        h1 {
-            text-align: center;
-            color: #007bff;
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa;
         }
 
-        form {
-            margin: 20px;
+        .login-container {
+            width: 380px; 
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff; 
+            border: 1px solid #cccccc; 
+            border-radius: 8px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            text-align: center; 
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #007bff; 
         }
 
         table {
@@ -25,8 +41,9 @@
 
         input[type="text"],
         input[type="password"] {
-            width: 100%;
+            width: calc(100% - 16px);
             padding: 8px;
+            margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
@@ -39,47 +56,48 @@
             color: #fff;
             border: none;
             border-radius: 10px;
+            
         }
 
         input[type="submit"]:hover {
             background-color: white;
             color: #007bff;
         }
+
+        .error-message {
+            color: red;
+            font-size: 18px;
+            text-align: center;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
 <body>
-    <h1>管理者ログインページ</h1>
-    <form action="login.php" method="post">
-        <table>
-            <tr>
-                <td>ユーザー名</td>
-                <td><input type="text" name="id" value=""></td>
-            </tr>
-            <tr>
-                <td>パスワード</td>
-                <td><input type="password" name="pass"></td>
-            </tr>
-        </table>
-        <input type="submit" value="ログイン">
-    </form>
-</body>
+    <div class="login-container">
+        <h1>ログイン</h1>
+        <form action="login.php" method="post">
+            <table>
+                <tr>
+                    <td>ユーザー名</td>
+                    <td><input type="text" name="id" value=""></td>
+                </tr>
+                <tr>
+                    <td>パスワード</td>
+                    <td><input type="password" name="pass"></td>
+                </tr>
+            </table>
+            <input type="submit" value="ログイン">
+        </form>
 
-</html>
-
-<?php
-
-//入力された数値の取得
-if (isset($_POST["id"], $_POST["pass"])) {
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+         if (isset($_POST["id"], $_POST["pass"])) {
     // ユーザー名とパスワードが送信された場合の処理
     $input_id = $_POST["id"];
     $input_pass = $_POST["pass"];
 
-    // 以降のログイン処理を行う
-
-
     //DB接続に必要な情報
-
     $login = "mysql:host=localhost;dbname=chinesefood;charset=utf8";
     $db_id = "testuser";
     $db_pass = "testpass";
@@ -103,17 +121,18 @@ if (isset($_POST["id"], $_POST["pass"])) {
 
     // パスワードの比較
     if ($stmt->rowCount() > 0 && $input_pass == $result[0]["password"]) {
-        // echo "ログイン完了";
         $new_location = "./admin/admin.php";
         header("Location: $new_location");
         exit;
     } else {
         echo "<p style='color: red; font-size: 18px;text-align: center;'>ユーザー名またはパスワード間違っています</p>";
     }
-} else {
-    // ユーザー名とパスワードが送信されなかった場合の処理
-    echo "<p style='color: red; font-size: 18px; text-align: center;'>ユーザー名とパスワードを入力してください。</p>";
-}
+            } else {
+                echo "<p class='error-message'>ユーザー名とパスワードを入力してください。</p>";
+            }
+        }
+        ?>
+    </div>
+</body>
 
-
-?>
+</html>

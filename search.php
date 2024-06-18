@@ -2,28 +2,33 @@
 $login = "mysql:host=localhost;dbname=chinesefood;charset=utf8";
 $db_id = "testuser";
 $db_pass = "testpass";
-
 $serverName = ".\\upload_file\\";
+
 try {
     // データベースに接続
     $dbh = new PDO($login, $db_id, $db_pass);
+
+    //キーワードの設定
     $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : null;
     $keyword = "%" . $keyword . "%";
+
     if (!empty($keyword)) {
         $sql = "SELECT * FROM foods WHERE (foodname LIKE ? OR introduction LIKE ?)";
         // プレイスホルダー
         $stmt = $dbh->prepare($sql);
-        // $stmt->bindParam(1, $id);
         $stmt->bindParam(1, $keyword);
         $stmt->bindParam(2, $keyword);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
 } catch (PDOException $e) {
     // エラー処理
     echo "接続失敗: " . $e->getMessage();
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="ja">
 

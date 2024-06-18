@@ -4,10 +4,6 @@ $login = "mysql:host=localhost;dbname=chinesefood;charset=utf8";
 $db_id = "testuser";
 $db_pass = "testpass";
 
-$ngo = null;
-
-isset($ngo);
-empty($ngo);
 
 try {
     // データベースに接続
@@ -50,7 +46,7 @@ try {
         // 成功したらリダイレクトするなどの処理を行う
         // 例えば、コメントが追加されたページにリダイレクトする場合は以下のようにする
         
-        echo"コメントしました。";
+        echo"<p>コメントしました。</p>";
         // exit();
     
 } catch (PDOException $e) {

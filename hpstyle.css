@@ -1,68 +1,70 @@
-/* 全体の背景色を変更 */
 body {
-  background-color: #fde6e6; /* 淡いピンク色 */
-  font-family: Arial, sans-serif; /* フォントを設定 */
+  background-color: #fde6e6; /
 }
 
-/* 見出し（h1）のスタイル */
 h1 {
-  color: #e13d3d; /* 深い赤色 */
-  font-size: 36px; /* フォントサイズを大きく */
+  color: #e13d3d; 
+  font-size: 36px; 
   text-align: center;
-  margin-top: 50px; /* 上部のマージンを追加 */
+  margin-top: 50px; 
 }
 
-/* 検索フォームのスタイル */
+
 .search {
   margin: 20px auto; /* 中央に配置 */
   text-align: center;
 }
 
 .search label {
-  font-weight: bold; /* ラベルを太字に */
-  margin-right: 10px; /* ラベルと入力フィールドの間隔を調整 */
+  font-weight: bold; 
+  margin-right: 10px; 
 }
 
 .search input[type="text"] {
-  padding: 8px; /* 入力フィールドの余白を追加 */
-  border: 2px solid #e13d3d; /* 枠線を追加 */
-  border-radius: 5px; /* 角丸に */
+  padding: 8px;
+  border: 2px solid #e13d3d; 
+  border-radius: 5px; 
 }
 
 .search button {
-  padding: 8px 20px; /* ボタンの余白を追加 */
-  background-color: #e13d3d; /* 赤色の背景 */
-  color: #fff; /* 白色のテキスト */
-  border: none; /* 枠線を消す */
-  border-radius: 5px; /* 角丸に */
-  cursor: pointer; /* マウスを乗せた時のカーソルを指定 */
+  padding: 8px 20px; 
+  background-color: #e13d3d; 
+  color: #fff; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
 }
 .search button:hover {
-   color: #e13d3d; /* リンクの色を赤色に */
+   color: #e13d3d; 
    background-color: #fde6e6;
-  text-decoration: none; /* アンダーラインを消す */
+  text-decoration: none; 
 }
 
-/* ログインリンクのスタイル */
+
 .login {
   text-align: right;
-  margin-top: 20px; /* 上部のマージンを追加 */
+  margin-top: 20px; 
 }
 
 .login a {
-  color: #e13d3d; /* リンクの色を赤色に */
-  text-decoration: none; /* アンダーラインを消す */
+  color: #e13d3d; 
+  text-decoration: none; 
 }
 
 .login a:hover {
-  text-decoration: underline; /* マウスを乗せた時にアンダーラインを表示 */
+  text-decoration: underline; 
 }
 
 /* 本文のスタイル */
 p {
   text-align: justify; /* 両端揃え */
   margin-left: 200px;
-  margin-right: 200px; /* 左右の余白を追加 */
+  margin-right: 200px; 
+  width: auto;
+  margin-left:200px;
+  margin-right: 200px;
+  border-left: solid 20px #e13d3d;
+  padding: 10px;
 }
 
 /* メイン画像のスタイル */
@@ -79,15 +81,15 @@ p {
   opacity: 0.7; /* マウスを乗せた時の透明度 */
 }
 
-/* メインリンクのスタイル */
+
 .mainlink {
   text-decoration: none; 
-  color: #e13d3d; /* 赤色のテキスト */
+  color: #e13d3d; 
   font-weight: bold; 
 }
 
 .mainlink:hover {
-  text-decoration: underline; /* マウスを乗せた時にアンダーラインを表示 */
+  text-decoration: underline;
 }
 
 body {

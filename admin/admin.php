@@ -183,8 +183,8 @@ foreach ($foods as $food) {
                     <td><?php echo $food['typefood']; ?></td>
                     <td><a href=<?php echo $serverName . $food['foodimage']; ?>>image</a></td>
                     <td><?php echo $food['introduction']; ?></td>
-                    <td><a href="./delete_food.php?id=<?php echo $food['id']; ?>" onclick="return confirm('この料理を削除しますか？')">削除</a></td>
-                    <td><a href="./edit_food.php?id=<?php echo $food['id']; ?>">編集</a></td>
+                    <td class="edit"><a href="./delete_food.php?id=<?php echo $food['id']; ?>" onclick="return confirm('この料理を削除しますか？')">削除</a></td>
+                    <td class="delete"><a href="./edit_food.php?id=<?php echo $food['id']; ?>">編集</a></td>
                 </tr>
             <?php } ?>
         <?php } ?>
@@ -192,5 +192,5 @@ foreach ($foods as $food) {
     <!-- ホームページに戻る -->
     
 </body>
-
+s
 </html>
