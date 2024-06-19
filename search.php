@@ -9,8 +9,12 @@ try {
     $dbh = new PDO($login, $db_id, $db_pass);
 
     //キーワードの設定
-    $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : null;
-    $keyword = "%" . $keyword . "%";
+    if (isset($_GET['keyword'])) {
+        $keyword = "%" . $_GET['keyword'] . "%";
+    } else {
+        $keyword = null;
+    }
+    
 
     if (!empty($keyword)) {
         $sql = "SELECT * FROM foods WHERE (foodname LIKE ? OR introduction LIKE ?)";
